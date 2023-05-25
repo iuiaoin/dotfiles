@@ -111,3 +111,61 @@ setup_omz() {
 brew_bundle() {
   brew bundle
 }
+
+install_nodejs() {
+  echo "==========================================================="
+  echo "              Setting up NodeJS Environment"
+
+  eval $(fnm env --shell zsh)
+  fnm install --lts
+
+  # Set NPM Global Path
+  export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+  # Create .npm-global folder if not exists
+  [[ ! -d "$NPM_CONFIG_PREFIX" ]] && mkdir -p $NPM_CONFIG_PREFIX
+
+  echo "-----------------------------------------------------------"
+  echo "* Installing NodeJS LTS..."
+  echo "-----------------------------------------------------------"
+
+  fnm install --lts
+
+  echo "-----------------------------------------------------------"
+  echo -n "* NodeJS Version: "
+
+  node -v
+
+  __npm_global_pkgs=(
+    hexo-cli
+    vercel
+    npm-why
+    pnpm
+    npm
+    serve
+    yarn
+  )
+
+  echo "-----------------------------------------------------------"
+  echo "* npm install global packages:"
+  echo ""
+
+  for __npm_pkg ($__npm_global_pkgs); do
+    echo "  - ${__npm_pkg}"
+  done
+
+  echo "-----------------------------------------------------------"
+
+  for __npm_pkg ($__npm_global_pkgs); do
+    npm i -g ${__npm_pkg}
+  done
+}
+
+#TODO zsh config
+zshrc() {
+  echo "==========================================================="
+  echo "                  Import Declan env zshrc                   "
+  echo "-----------------------------------------------------------"
+
+  cat $HOME/dotfiles/_zshrc/macos.zshrc > $HOME/.zshrc
+  cat $HOME/dotfiles/p10k/.p10k.zsh > $HOME/.p10k.zsh
+}
