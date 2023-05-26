@@ -163,3 +163,33 @@ zshrc() {
   cat $HOME/dotfiles/_zshrc/macos.zshrc > $HOME/.zshrc
   cat $HOME/dotfiles/_hyper/.hyper.js > $HOME/.hyper.js
 }
+
+finish() {
+  echo "==========================================================="
+  echo -n "* Clean up..."
+
+  cd $HOME
+  rm -rf $HOME/dotfiles
+
+  echo "Done!"
+  echo ""
+  echo "> Declan Enviroment Setup finished!"
+  echo "> Do not forget run those things:"
+  echo ""
+  echo "- chsh -s /usr/bin/zsh"
+  echo "- npm login"
+  echo "- git-config"
+  echo "==========================================================="
+
+  cd $HOME
+}
+
+start
+install_homebrew
+install_packages
+clone_repo
+setup_omz
+brew_bundle
+install_nodejs
+zshrc
+finish
