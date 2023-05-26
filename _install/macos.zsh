@@ -89,23 +89,18 @@ setup_omz() {
   curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
 
   echo "-----------------------------------------------------------"
-  echo "* Installing ZSH Custom Plugins & Themes:"
+  echo "* Installing ZSH Custom Plugins:"
   echo ""
+  echo "  - fzf-tab"
   echo "  - zsh-autosuggestions"
   echo "  - fast-syntax-highlighting"
-  echo "  - zsh-gitcd"
-  echo "  - p10k zsh-theme"
   echo "  - zsh-z"
   echo "-----------------------------------------------------------"
 
   git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/fzf-tab
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   git clone https://github.com/zdharma/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-  git clone https://github.com/mafredri/zsh-async.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-async
-  git clone https://github.com/sukkaw/zsh-gitcd.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-gitcd
   git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-z
-
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
 brew_bundle() {
@@ -160,12 +155,11 @@ install_nodejs() {
   done
 }
 
-#TODO zsh config
 zshrc() {
   echo "==========================================================="
   echo "                  Import Declan env zshrc                   "
   echo "-----------------------------------------------------------"
 
   cat $HOME/dotfiles/_zshrc/macos.zshrc > $HOME/.zshrc
-  cat $HOME/dotfiles/p10k/.p10k.zsh > $HOME/.p10k.zsh
+  cat $HOME/dotfiles/_hyper/.hyper.js > $HOME/.hyper.js
 }
