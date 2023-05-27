@@ -179,6 +179,8 @@ finish() {
   echo "- chsh -s /usr/bin/zsh"
   echo "- npm login"
   echo "- git-config"
+  echo "mas install 1258530160"
+  echo "mas install 1572457968"
   echo "==========================================================="
 
   cd $HOME
