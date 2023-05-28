@@ -276,24 +276,36 @@ if (( $+commands[fzf] )) &>/dev/null; then
   [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 fi
 
+# conda
+if (( $+commands[conda] )) &>/dev/null; then
+  # lazyload conda
+  __declan_lazy_conda_aliases=('python' 'conda' 'pip' 'pip3' 'python3')
+  for lazy_conda_alias in $__declan_lazy_conda_aliases
+  do
+    alias $lazy_conda_alias="__declan_load_conda && $lazy_conda_alias"
+  done
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/lixiaoli/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/lixiaoli/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/lixiaoli/miniconda3/etc/profile.d/conda.sh"
+  __declan_load_conda() {
+    for lazy_conda_alias in $__declan_lazy_conda_aliases
+    do
+        unalias $lazy_conda_alias
+    done
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/usr/local/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/Users/lixiaoli/miniconda3/bin:$PATH"
+        if [ -f "/usr/local/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/usr/local/miniconda3/bin:$PATH"
+        fi
     fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+    # export PATH="/usr/local/miniconda3/bin:$PATH"  # commented out by conda initialize
+
+    unfunction __declan_load_conda
+  }
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-export PATH="/usr/local/bin:$PATH"
-# export PATH="/usr/local/opt/libpcap/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/libpcap/lib"
-export CPPFLAGS="-I/usr/local/opt/libpcap/include"
-eval "$(pyenv init -)"
-export AZURE_ML_CLI_PRIVATE_FEATURES_ENABLED=True
