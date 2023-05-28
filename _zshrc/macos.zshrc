@@ -136,6 +136,145 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias pip=pip3
+if (( $+commands[code] )); then
+    alias zshconfig="code $HOME/.zshrc"
+else
+    alias zshconfig="vim $HOME/.zshrc"
+fi
+
+alias rezsh="omz reload"
+alias rmrf="rm -rf"
+alias gitcm="git commit -m"
+alias gitp="git push"
+alias gita="git add -a"
+alias gitall="git add ."
+# Git Undo
+alias git-undo="git reset --soft HEAD^"
+
+alias ping="nali-ping"
+alias dig="nali-dig"
+alias traceroute="nali-traceroute"
+alias tracepath="nali-tracepath"
+alias nslookup="nali-nslookup"
+
+# Enable sudo in aliased
+# http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo '
+
+alias q="cd $HOME && clear"
+
+alias digshort="dig @1.0.0.1 +short "
+
+alias restart_bluetooth="sudo pkill bluetoothd && sudo launchctl start com.apple.bluetoothd"
+
+alias finder_show="defaults write com.apple.finder AppleShowAllFiles YES"
+alias finder_hide="defaults write com.apple.finder AppleShowAllFiles NO"
+
+# use cd ~desktop to quickly change to your Desktop directory
+hash -d desktop="$HOME/Desktop"
+hash -d music="$HOME/Music"
+hash -d pictures="$HOME/Pictures"
+hash -d picture="$HOME/Pictures"
+hash -d downloads="$HOME/Downloads"
+hash -d download="$HOME/Downloads"
+hash -d documents="$HOME/Documents"
+hash -d document="$HOME/Documents"
+
+clear_dns_cache() {
+    sudo dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder
+    sudo killall mDNSResponderHelper
+}
+alias flushdns="clear_dns_cache"
+
+git-config() {
+    echo -n "
+===================================
+      * Git Configuration *
+-----------------------------------
+Please input Git Username: "
+
+    read username
+
+    echo -n "
+-----------------------------------
+Please input Git Email: "
+
+    read email
+
+    echo -n "
+-----------------------------------
+Done!
+===================================
+"
+
+    # git config --global alias.lg "log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\""
+    git config --global user.name "${username}"
+    git config --global user.email "${email}"
+}
+
+# fix permission issues when trying to install, upgrade, or remove software with Homebrew.
+brew-fix() {
+    sudo chown -R $(whoami) /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig
+    chmod u+w /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig
+}
+
+# Kills a process running on a specified tcp port
+killport() {
+  echo "Killing process on port: $1"
+  fuser -n tcp -k $1;
+}
+
+extract() {
+    if [[ -f $1 ]]; then
+        case $1 in
+        *.tar.bz2) tar xjf $1 ;;
+        *.tar.gz) tar xzf $1 ;;
+        *.bz2) bunzip2 $1 ;;
+        *.rar) unrar e $1 ;;
+        *.gz) gunzip $1 ;;
+        *.tar) tar xf $1 ;;
+        *.tbz2) tar xjf $1 ;;
+        *.tgz) tar xzf $1 ;;
+        *.zip) unzip "$1" ;;
+        *.Z) uncompress $1 ;;
+        *.7z) 7z x $1 ;;
+        *) echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# hexo completion
+if (( $+commands[hexo] )) &>/dev/null; then
+    _hexo_completion() {
+        compls=$(hexo --console-list)
+        completions=(${=compls})
+        compadd -- $completions
+    }
+
+    compdef _hexo_completion hexo
+fi
+
+# npm completion
+if (( $+commands[npm] )) &>/dev/null; then
+  _npm_completion() {
+    local si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+fi
+
+# fzf
+if (( $+commands[fzf] )) &>/dev/null; then
+  [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+fi
 
 
 # >>> conda initialize >>>

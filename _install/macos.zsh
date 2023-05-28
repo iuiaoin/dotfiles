@@ -133,8 +133,8 @@ install_nodejs() {
   __npm_global_pkgs=(
     hexo-cli
     vercel
+    nali-cli@next
     npm-why
-    pnpm
     npm
     serve
     yarn
