@@ -111,6 +111,22 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# Set NPM Global Path
+export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+# Create .npm-global folder if not exists
+[[ ! -d "$HOME/.npm-global" ]] && mkdir -p $HOME/.npm-global
+
+export BAT_THEME="Monokai Extended Bright"
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Path should be set before fnm
+export PATH="/usr/local/opt/curl/bin:$HOME/.yarn/bin:$NPM_CONFIG_PREFIX/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+
+# fnm automatically switch Node.js versions when you cd into a directory with a .node-version or .nvmrc file
+if (( $+commands[fnm] )); then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
