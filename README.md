@@ -21,4 +21,4 @@ Authored and maintained by Declan with help from contributors.
 > [Personal Website](https://blog.iuiaoin.com) · [Blog](https://blog.iuiaoin.com) · GitHub [@iuiaoin](https://github.com/iuiaoin)
 
 ## Inspired by
-[SukkaW/dotfiles](https://github.com/SukkaW/dotfiles)
+[SukkaW / dotfiles](https://github.com/SukkaW/dotfiles)
