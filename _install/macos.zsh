@@ -134,6 +134,7 @@ install_nodejs() {
     hexo-cli
     vercel
     nali-cli@next
+    pure-prompt
     npm-why
     npm
     serve
