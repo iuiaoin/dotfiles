@@ -127,6 +127,29 @@ if (( $+commands[fnm] )); then
     eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
+# Lazyload Function
+
+## Setup a mock function for lazyload
+## Usage:
+## 1. Define function "_declan_lazyload_command_[command name]" that will init the command
+## 2. declan_lazyload_add_command [command name]
+declan_lazyload_add_command() {
+    eval "$1() { \
+        unfunction $1; \
+        _declan_lazyload_command_$1; \
+        $1 \$@; \
+    }"
+}
+
+## Lazyload thefuck
+if (( $+commands[thefuck] )) &>/dev/null; then
+    _declan_lazyload_command_fuck() {
+        eval $(thefuck --alias)
+    }
+
+    declan_lazyload_add_command fuck
+fi
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
