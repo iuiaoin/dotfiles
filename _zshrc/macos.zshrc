@@ -91,6 +91,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# uncomment this line on M1 mac, since homebrew move from /usr/local to /opt/homebrew on M1 mac
+# fpath+=/opt/homebrew/share/zsh/site-functions
+
 autoload -U promptinit; promptinit
 prompt pure
 

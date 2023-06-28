@@ -177,11 +177,12 @@ finish() {
   echo "> Declan Enviroment Setup finished!"
   echo "> Do not forget run those things:"
   echo ""
-  echo "- chsh -s /usr/bin/zsh"
+  echo "- chsh -s /usr/bin/zsh(use /bin/zsh if throws non-standard shell)"
   echo "- npm login"
   echo "- git-config"
   echo "- mas install 1258530160"
   echo "- mas install 1572457968"
+  echo "- uncomment fpath config in .zshrc if using M1 mac"
   echo "==========================================================="
 
   cd $HOME
