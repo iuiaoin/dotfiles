@@ -91,8 +91,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# uncomment this line on M1 mac, since homebrew move from /usr/local to /opt/homebrew on M1 mac
-# fpath+=/opt/homebrew/share/zsh/site-functions
+if [ "$(uname -m)" = "arm64" ]; then
+    fpath+=/opt/homebrew/share/zsh/site-functions
+fi
 
 autoload -U promptinit; promptinit
 prompt pure
@@ -319,14 +320,19 @@ if (( $+commands[conda] )) &>/dev/null; then
     done
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ "$(uname -m)" = "arm64" ]; then
+        __homebrew_prefix="/opt/homebrew"
+    else
+        __homebrew_prefix="/usr/local"
+    fi
+    __conda_setup="$('"$__homebrew_prefix/Caskroom/miniconda/base/bin/conda"' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-            . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+        if [ -f "$__homebrew_prefix/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+            . "$__homebrew_prefix/Caskroom/miniconda/base/etc/profile.d/conda.sh"
         else
-            export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+            export PATH="$__homebrew_prefix/Caskroom/miniconda/base/bin:$PATH"
         fi
     fi
     unset __conda_setup
