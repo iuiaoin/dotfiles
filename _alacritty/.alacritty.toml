@@ -42,6 +42,10 @@ white = "#eff0eb"
 x = 14
 y = 12
 
+[window.dimensions]
+columns = 125
+lines = 45
+
 [shell]
 program = "/bin/zsh"
 args = ["--login"]
