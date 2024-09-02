@@ -133,7 +133,6 @@ install_nodejs() {
   __npm_global_pkgs=(
     hexo-cli
     vercel
-    nali-cli@next
     pure-prompt
     npm-why
     npm

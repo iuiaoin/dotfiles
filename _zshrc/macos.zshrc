@@ -178,12 +178,6 @@ alias gitall="git add ."
 # Git Undo
 alias git-undo="git reset --soft HEAD^"
 
-alias ping="nali-ping"
-alias dig="nali-dig"
-alias traceroute="nali-traceroute"
-alias tracepath="nali-tracepath"
-alias nslookup="nali-nslookup"
-
 # Enable sudo in aliased
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
 alias sudo='sudo '
