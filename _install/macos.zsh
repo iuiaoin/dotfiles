@@ -162,7 +162,6 @@ zshrc() {
   echo "-----------------------------------------------------------"
 
   cat $HOME/dotfiles/_zshrc/macos.zshrc > $HOME/.zshrc
-  cat $HOME/dotfiles/_hyper/.hyper.js > $HOME/.hyper.js
   cat $HOME/dotfiles/_alacritty/.alacritty.toml > $HOME/.alacritty.toml
 }
 

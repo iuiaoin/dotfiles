@@ -40,7 +40,7 @@ white = "#eff0eb"
 
 [window.padding]
 x = 14
-y = 12
+y = 22
 
 [window.dimensions]
 columns = 125
@@ -53,3 +53,12 @@ args = ["--login"]
 [window]
 decorations = "Transparent"
 startup_mode = "Windowed"
+
+[keyboard]
+bindings = [
+  { key = "Left",  mods = "Alt",     chars = "\u001bB"   },
+  { key = "Right", mods = "Alt",     chars = "\u001bF"   },
+  { key = "Left",  mods = "Command", chars = "\u001bOH"  },
+  { key = "Right", mods = "Command", chars =  "\u001bOF" },
+  { key = "Back",  mods = "Command", chars = "\u0015"    }
+]
