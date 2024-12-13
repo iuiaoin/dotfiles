@@ -46,7 +46,7 @@ y = 22
 columns = 125
 lines = 45
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["--login"]
 
@@ -62,3 +62,5 @@ bindings = [
   { key = "Right", mods = "Command", chars =  "\u001bOF" },
   { key = "Back",  mods = "Command", chars = "\u0015"    }
 ]
+
+[terminal]
