@@ -10,7 +10,7 @@
 ### macOS Setup
 
 ```bash
-curl -o- https://raw.githubusercontent.com/iuiaoin/dotfiles/main/_install/macos.zsh | zsh
+sudo curl -o- https://raw.githubusercontent.com/iuiaoin/dotfiles/main/_install/macos.zsh | zsh
 ```
 
 ## Maintainer
