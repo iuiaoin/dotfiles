@@ -1,7 +1,6 @@
 # dotfiles
 
 ![](https://img.shields.io/github/license/iuiaoin/dotfiles.svg?style=flat-square) [![Author](https://img.shields.io/badge/Author-Declan-b68469.svg?style=flat-square)]((https://blog.iuiaoin.com))
-[![Travis Build Status](https://img.shields.io/travis/iuiaoin/dotfiles.svg?style=flat-square)](https://travis-ci.org/iuiaoin/dotfiles)
 
 > A repo contained Declan's `.files`, for setting up my development environment.
 
