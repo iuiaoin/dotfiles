@@ -1,6 +1,5 @@
-tap "homebrew/bundle"
 tap "buo/cask-upgrade"
-tap "homebrew/services"
+
 brew "axel"
 brew "curl"
 brew "fnm"
@@ -11,8 +10,8 @@ brew "mas"
 brew "telnet"
 brew "wget"
 brew "zsh"
-brew "six"
 brew "thefuck"
+
 cask "alacritty"
 cask "miniconda"
 cask "google-chrome"
@@ -22,5 +21,6 @@ cask "visual-studio-code"
 cask "alfred"
 cask "wechat"
 cask "youdaonote"
+
 # mas "专注清单", id: 1258530160
 # mas "Vision", id: 1572457968
