@@ -203,6 +203,30 @@ hash -d download="$HOME/Downloads"
 hash -d documents="$HOME/Documents"
 hash -d document="$HOME/Documents"
 
+# Toggle IPv6 off and restart Wi-Fi adapter
+orange() {
+    echo "🔶 Disabling IPv6 on Wi-Fi and restarting adapter..."
+    # disable IPv6 on Wi-Fi
+    sudo networksetup -setv6off Wi-Fi 
+    
+    # restart the network adapter
+    sudo networksetup -setnetworkserviceenabled Wi-Fi off
+    sudo networksetup -setnetworkserviceenabled Wi-Fi on
+    echo "✅ IPv6 disabled on Wi-Fi and adapter restarted"
+}
+
+# Toggle IPv6 on and restart Wi-Fi adapter
+unorange() {
+    echo "🔄 Enabling IPv6 on Wi-Fi and restarting adapter..."
+    # enable IPv6 on Wi-Fi
+    sudo networksetup -setv6automatic Wi-Fi
+    
+    # restart the network adapter
+    sudo networksetup -setnetworkserviceenabled Wi-Fi off
+    sudo networksetup -setnetworkserviceenabled Wi-Fi on
+    echo "✅ IPv6 enabled on Wi-Fi and adapter restarted"
+}
+
 clear_dns_cache() {
     sudo dscacheutil -flushcache
     sudo killall -HUP mDNSResponder
