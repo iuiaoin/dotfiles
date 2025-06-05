@@ -164,7 +164,9 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias pip=pip3
-if (( $+commands[code] )); then
+if (( $+commands[code-insiders] )); then
+    alias zshconfig="code-insiders $HOME/.zshrc"
+elif (( $+commands[code] )); then
     alias zshconfig="code $HOME/.zshrc"
 else
     alias zshconfig="vim $HOME/.zshrc"
