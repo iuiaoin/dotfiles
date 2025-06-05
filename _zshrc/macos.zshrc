@@ -203,27 +203,31 @@ hash -d download="$HOME/Downloads"
 hash -d documents="$HOME/Documents"
 hash -d document="$HOME/Documents"
 
-# Activate Python env + disable IPv6
-orange() {
-    echo "🟠 Disabling IPv6 on Wi-Fi and restarting adapter..."
-    sudo networksetup -setv6off Wi-Fi 
+IPv6on() {
+    echo "🟢 Enabling IPv6 on Wi-Fi and restarting adapter..."
+    sudo networksetup -setv6automatic Wi-Fi
+    sudo networksetup -setnetworkserviceenabled Wi-Fi off
+    sudo networksetup -setnetworkserviceenabled Wi-Fi on
+    echo "✅ IPv6 enabled on Wi-Fi and adapter restarted"
+}
+
+IPv6off() {
+    echo "🔴 Disabling IPv6 on Wi-Fi and restarting adapter..."
+    sudo networksetup -setv6off Wi-Fi
     sudo networksetup -setnetworkserviceenabled Wi-Fi off
     sudo networksetup -setnetworkserviceenabled Wi-Fi on
     echo "✅ IPv6 disabled on Wi-Fi and adapter restarted"
+}
 
+# Activate Python env
+orange() {
     echo "🐍 Activating Python virtualenv: openai"
     source ~/.virtualenvs/openai/bin/activate
     echo "✅ Python virtualenv 'openai' activated"
 }
 
-# Deactivate Python env + enable IPv6
+# Deactivate Python env
 unorange() {
-    echo "🔄 Enabling IPv6 on Wi-Fi and restarting adapter..."
-    sudo networksetup -setv6automatic Wi-Fi
-    sudo networksetup -setnetworkserviceenabled Wi-Fi off
-    sudo networksetup -setnetworkserviceenabled Wi-Fi on
-    echo "✅ IPv6 enabled on Wi-Fi and adapter restarted"
-
     if [[ -n "$VIRTUAL_ENV" ]]; then
         echo "🚫 Deactivating Python virtualenv: $(basename $VIRTUAL_ENV)"
         deactivate
