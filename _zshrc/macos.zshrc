@@ -125,12 +125,15 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 export PNPM_HOME=~/.pnpm
 # Path should be set before fnm
-export PATH="/usr/local/opt/curl/bin:$HOME/.yarn/bin:$NPM_CONFIG_PREFIX/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PNPM_HOME:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$HOME/.yarn/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PNPM_HOME:$HOME/.local/bin:$PATH"
 
 # fnm automatically switch Node.js versions when you cd into a directory with a .node-version or .nvmrc file
 if (( $+commands[fnm] )); then
     eval "$(fnm env --use-on-cd --shell zsh)"
 fi
+
+# Make sure npm global binaries stay ahead of fnm-managed shims
+export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 
 # Lazyload Function
 
