@@ -195,6 +195,9 @@ alias finder_show="defaults write com.apple.finder AppleShowAllFiles YES"
 alias finder_hide="defaults write com.apple.finder AppleShowAllFiles NO"
 alias getip="ipconfig getifaddr en0"
 
+# Create as alias for nuget
+alias nuget="mono /usr/local/bin/nuget.exe"
+
 # use cd ~desktop to quickly change to your Desktop directory
 hash -d desktop="$HOME/Desktop"
 hash -d music="$HOME/Music"
