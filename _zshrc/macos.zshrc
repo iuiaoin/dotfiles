@@ -201,6 +201,8 @@ alias getip="ipconfig getifaddr en0"
 # Create as alias for nuget
 alias nuget="mono /usr/local/bin/nuget.exe"
 
+alias b="brix"
+
 # use cd ~desktop to quickly change to your Desktop directory
 hash -d desktop="$HOME/Desktop"
 hash -d music="$HOME/Music"
