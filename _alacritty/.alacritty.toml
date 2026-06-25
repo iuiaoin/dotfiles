@@ -64,3 +64,6 @@ bindings = [
 ]
 
 [terminal]
+
+[debug]
+log_level = "Error"
