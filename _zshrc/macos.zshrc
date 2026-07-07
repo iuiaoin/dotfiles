@@ -168,6 +168,10 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias pip=pip3
 if (( $+commands[code-insiders] )); then
+    alias code="code-insiders"
+fi
+
+if (( $+commands[code-insiders] )); then
     alias zshconfig="code-insiders $HOME/.zshrc"
 elif (( $+commands[code] )); then
     alias zshconfig="code $HOME/.zshrc"
