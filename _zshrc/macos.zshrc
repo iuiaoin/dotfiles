@@ -171,13 +171,23 @@ if (( $+commands[code-insiders] )); then
     alias code="code-insiders"
 fi
 
-if (( $+commands[code-insiders] )); then
-    alias zshconfig="code-insiders $HOME/.zshrc"
-elif (( $+commands[code] )); then
-    alias zshconfig="code $HOME/.zshrc"
-else
-    alias zshconfig="vim $HOME/.zshrc"
-fi
+open_config_file() {
+    local config_file="$1"
+    local editor
+
+    if (( $+commands[code-insiders] )); then
+        editor="code-insiders"
+    elif (( $+commands[code] )); then
+        editor="code"
+    else
+        editor="vim"
+    fi
+
+    command "$editor" "$config_file"
+}
+
+alias zshconfig='open_config_file "$HOME/.zshrc"'
+alias rcallconfig='open_config_file "$HOME/.rcall_config.py"'
 
 alias rezsh="omz reload"
 alias rmrf="rm -rf"
